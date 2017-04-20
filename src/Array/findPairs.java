@@ -63,25 +63,28 @@ public class findPairs {
         return count;
     }
 
-    public int findPairs2(int[] nums, int k){
-        Map<Integer, Boolean> map = new HashMap<>();
-        int res = 0;
-        for(int i=0; i<nums.length; i++){
-            if(map.containsKey(nums[i]-k) && map.get(nums[i]-k) == false){
-                res++;
-                map.put(nums[i]-k, true);
+    public int findPairs2(int[] nums, int k) {
+        if (k < 0)   return 0;
+        HashMap<Integer,Integer> freqmap = new HashMap<>();
+        int count = 0;
+        for(int num:nums)
+            freqmap.put(num, freqmap.getOrDefault(num, 0)+1);
+        for (Integer key : freqmap.keySet()) {
+            int a = (int)key;
+            int b = a + k;
+            if(!freqmap.containsKey(b)) continue;
+            int bfreq = freqmap.get(b);
+            int minfreq = a==b ? 2:1;
+            if(bfreq>=minfreq ){
+                count++;
+                freqmap.put(a,1);
             }
-            if(map.containsKey(nums[i]) && map.containsKey(nums[i] + k)){
-                res++;
-                map.put(nums[i], true);
-            }
-            if(!map.containsKey(nums[i])) map.put(nums[i], false);
         }
-        return res;
+        return count;
     }
 
     public static void main(String [] args){
-        int[] nums = {3,1,4,1,5};
-        findPairs(nums, 2);
+        int[] nums = {1,1,1,2,1};
+        findPairs(nums, 1);
     }
 }
