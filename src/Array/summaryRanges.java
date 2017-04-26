@@ -1,0 +1,51 @@
+package Array;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by liuchong on 2017/4/25.
+ */
+public class summaryRanges {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> res = new ArrayList<>();
+        if(nums.length == 0)
+            return res;
+        int left = nums[0];
+        for(int i=0; i<nums.length-1; i++){
+            if(nums[i]  != nums[i+1]-1){
+                if(nums[i] == left)
+                    res.add("" + left);
+                else
+                    res.add(left + "->" + nums[i]);
+                left = nums[i+1];
+            }
+        }
+        if(nums[nums.length-1] == left)
+            res.add("" + left);
+        else
+            res.add(left + "->" + nums[nums.length-1]);
+        //res.add();
+        return res;
+    }
+
+    public List<String> summaryRanges1(int[] nums){
+        List<String> list=new ArrayList();
+        if(nums.length==1){
+            list.add(nums[0]+"");
+            return list;
+        }
+        for(int i=0;i<nums.length;i++){
+            int a=nums[i];
+            while(i+1<nums.length&&(nums[i+1]-nums[i])==1){
+                i++;
+            }
+            if(a!=nums[i]){
+                list.add(a+"->"+nums[i]);
+            }else{
+                list.add(a+"");
+            }
+        }
+        return list;
+    }
+}
