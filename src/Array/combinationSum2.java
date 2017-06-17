@@ -8,14 +8,14 @@ import java.util.List;
  * Created by liuchong on 2017/4/28.
  */
 public class combinationSum2 {
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(candidates);
         dfs(candidates, res, new ArrayList<>(), target, 0);
         return res;
     }
 
-    public void dfs(int[] candidates, List<List<Integer>> res, List<Integer> tmp, int target, int idx){
+    public static void dfs(int[] candidates, List<List<Integer>> res, List<Integer> tmp, int target, int idx){
         if(target<0)
             return;
         else if(target == 0) {
@@ -60,5 +60,10 @@ public class combinationSum2 {
             dfs2(candidates, res, list, cindex+1, lindex+1, target-candidates[i]);
             prev = candidates[i];
         }
+    }
+
+    public static void main(String[] args){
+        int[] candidates = {10, 1, 2, 7, 6, 1, 5};
+        combinationSum2(candidates, 8);
     }
 }
