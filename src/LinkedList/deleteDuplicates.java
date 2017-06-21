@@ -39,7 +39,7 @@ public class deleteDuplicates {
     }
 
     public ListNode deleteDuplicates2(ListNode head) {
-        Set<Integer> s = new HashSet<Integer>();
+        Set<Integer> s = new HashSet<>();
         ListNode cur = head;
         ListNode pre = new ListNode(0);
         pre.next = head;
