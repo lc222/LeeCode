@@ -1,4 +1,4 @@
-package Sort_func;
+package Sort_func.arraySort.arraySort;
 
 /**
  * 希尔排序是插入排序的改进版，它的作法不是每次一个元素挨一个元素的比较。

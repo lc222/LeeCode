@@ -1,4 +1,4 @@
-package Sort_func;
+package Sort_func.arraySort.arraySort;
 
 /**
  * 对于一个数组，我们选定一个基准数据（例如：数组中的最后一个或者第一个元素），

@@ -1,4 +1,4 @@
-package Sort_func;
+package Sort_func.arraySort.arraySort;
 
 /**
  * 冒泡排序

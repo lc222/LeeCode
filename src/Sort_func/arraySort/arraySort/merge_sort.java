@@ -1,4 +1,4 @@
-package Sort_func;
+package Sort_func.arraySort.arraySort;
 
 /**
  * 归并排序是采用分治法的一个非常典型的应用。归并排序的思想就是先递归分解数组，再合并数组。

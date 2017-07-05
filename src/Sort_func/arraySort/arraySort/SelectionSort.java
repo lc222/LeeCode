@@ -1,4 +1,4 @@
-package Sort_func;
+package Sort_func.arraySort.arraySort;
 
 /**
  * 在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。
