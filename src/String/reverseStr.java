@@ -18,25 +18,15 @@ package String;
  The string consists of lower English letters only.
  Length of the given string and k will in the range [1, 10000]
 
- 13. Roman to Integer
- 没什么点，遍历字符串结合罗马数字表示方法即可
-
- 14. Longest Common Prefix
- 首先可以使用便利的方法两两比较得到最长公共子串
- 其次可以使用startsWith函数判断，然后将min逐渐变短
- 最后可以将数组排序，直接比较第一个和最后一个即可
-
- 20. Valid Parentheses
- 判断(){}[]关闭顺序是否正确。使用栈或者用一个数组来保存未关闭的符号
-
  */
 public class reverseStr {
 
+    //35%
     public static String reverseStr(String s, int k) {
         char [] res = s.toCharArray();
-        int n = s.length()/(2*k);
-        for(int i=0; i<n; i++){
-            int left=i*2*k, right=i*n+k-1;
+        int n = s.length()/(2*k), i;
+        for(i=0; i<n; i++){
+            int left=i*2*k, right=left+k-1;
             while(left < right){
                 char tmp = res[left];
                 res[left] = res[right];
@@ -45,13 +35,49 @@ public class reverseStr {
                 right --;
             }
         }
-        if(s.length() - n*2*k > k){
-
+        int left=i*2*k, right=Math.min(left+k-1, s.length()-1);
+        while(left < right){
+            char tmp = res[left];
+            res[left] = res[right];
+            res[right] = tmp;
+            left ++;
+            right --;
         }
         return new String(res);
     }
 
+
+    //44%
+    public String reverseStr1(String s, int k) {
+        char[] arr = s.toCharArray();
+        int n = arr.length;
+        int i = 0;
+        while(i < n) {
+            int j = Math.min(i + k - 1, n - 1);
+            swap(arr, i, j);
+            i += 2 * k;
+        }
+        return String.valueOf(arr);
+    }
+    private void swap(char[] arr, int l, int r) {
+        while (l < r) {
+            char temp = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = temp;
+        }
+    }
+
+    //68%
+    public String reverseStr2(String s, int k) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (i % (2 * k) < k) res.insert(i - i % (2 * k), s.charAt(i));
+            else res.append(s.charAt(i));
+        }
+        return res.toString();
+    }
+
     public static void main(String[] args){
-        reverseStr("abcdefgfvde", 2);
+        System.out.println(reverseStr("abcdefg", 8));
     }
 }
